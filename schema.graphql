@@ -1,0 +1,24 @@
+type Block @entity {
+
+  id: ID! #id is a required field
+
+  slot: Int!
+
+}
+
+type Transaction @entity {
+
+  id: ID!
+
+  blockHash: String
+
+  slot: BigInt
+
+  blockHeight: BigInt
+
+  signature: String
+
+  programId: [String]
+
+  status: String
+}

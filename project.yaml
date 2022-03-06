@@ -1,0 +1,26 @@
+specVersion: 0.0.1
+name: solana
+version: 0.0.1
+description: >-
+  This project can be use as a starting point for developing your SubQuery
+  project
+repository: https://github.com/sotatek-dev/subql-solana-starter
+schema:
+  file: ./schema.graphql
+network:
+  endpoint: https://sol.getblock.io/mainnet/?api_key=54b10612-919b-407b-9211-07c394407a05
+  genesisHash: 0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3
+  # You can add a dictionary here
+  # dictionary: dictionary_url
+dataSources:
+  - kind: solana/Runtime
+    startBlock: 1
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleBlock
+          kind: solana/BlockHandler
+        - handler: handleTransaction
+          kind: solana/TransactionHandler
+          filter:
+            status: Ok
