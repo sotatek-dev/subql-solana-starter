@@ -1,6 +1,7 @@
 import {Block, Transaction} from '../types';
+import { SolanaBlock, SolanaTransaction } from '@sotatek-subql/types-solana';
 
-export async function handleBlock(block: any): Promise<void> {
+export async function handleBlock(block: SolanaBlock): Promise<void> {
   let record = await Block.get(block.block.blockhash);
   if (!record) {
       record = new Block(block.block.blockhash);
@@ -10,7 +11,7 @@ export async function handleBlock(block: any): Promise<void> {
   await record.save();
 }
 
-export async function handleTransaction(transaction: any): Promise<void> {
+export async function handleTransaction(transaction: SolanaTransaction): Promise<void> {
   let record = new Transaction(transaction.transaction.message.recentBlockhash);
   record.blockHash = transaction.transaction.message.recentBlockhash;
   record.slot = transaction.slot;

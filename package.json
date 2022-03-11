@@ -16,10 +16,11 @@
     "schema.graphql",
     "project.yaml"
   ],
-  "author": "Ian He & Jay Ji & SotaTek",
+  "author": "SotaTek",
   "license": "MIT",
   "devDependencies": {
     "@polkadot/api": "^7",
+    "@sotatek-subql/types-solana": "^0.15.1",
     "@subql/cli": "latest",
     "@subql/types": "latest",
     "typescript": "^4.1.3"
