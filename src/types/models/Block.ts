@@ -18,14 +18,6 @@ export class Block implements Entity {
 
     public slot: number;
 
-    public field2?: string;
-
-    public field3?: bigint;
-
-    public field4?: Date;
-
-    public field5?: boolean;
-
 
     async save(): Promise<void>{
         let id = this.id;

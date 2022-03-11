@@ -2,29 +2,32 @@
 import {Entity, FunctionPropertyNames} from "@subql/types";
 import assert from 'assert';
 
+
+
+
 type TransactionProps = Omit<Transaction, NonNullable<FunctionPropertyNames<Transaction>>>;
 
 export class Transaction implements Entity {
 
-    constructor(id?: string) {
-        if (id) {
-            this.id = id;
-        }
+    constructor(id: string) {
+        this.id = id;
     }
+
 
     public id: string;
 
-    public blockHash: string;
+    public blockHash?: string;
 
-    public slot: number;
+    public slot?: bigint;
 
-    public blockHeight: number;
+    public blockHeight?: bigint;
 
-    public signature: string;
-    
-    public programId: string[];
+    public signature?: string;
 
-    public status: string;
+    public programId?: string[];
+
+    public status?: string;
+
 
     async save(): Promise<void>{
         let id = this.id;
@@ -45,6 +48,8 @@ export class Transaction implements Entity {
             return;
         }
     }
+
+
 
     static create(record: TransactionProps): Transaction {
         assert(typeof record.id === 'string', "id must be provided");
