@@ -12,12 +12,23 @@ export async function handleBlock(block: SolanaBlock): Promise<void> {
 }
 
 export async function handleTransaction(transaction: SolanaTransaction): Promise<void> {
-  // let record = new Transaction(transaction.transaction.message.recentBlockhash);
-  // record.blockHash = transaction.transaction.message.recentBlockhash;
-  // record.slot = transaction.slot;
-  // record.blockHeight = transaction.blockHeight;
-  // record.signature = transaction.transaction.signatures[0];
-  // record.programId = [...new Set(transaction.meta.logMessages.map(log => log.split(' ')[1]))] as string[];
-  // record.status = Object.keys(transaction.meta.status)[0];
-  // await record.save();
+  const { transaction: transactionData, meta } : any = transaction;
+  let record = new Transaction(transactionData.message.recentBlockhash);
+  record.blockHash = transactionData.message.recentBlockhash;
+  record.slot = transaction.slot;
+  record.blockHeight = transaction.blockHeight;
+  record.signature = transactionData.signatures[0] ? transactionData.signatures[0] : null;
+  if (meta) {
+    record.programId = meta.logMessages
+      ? ([
+          ...new Set(
+            meta.logMessages.map((log) => log.split(" ")[1])
+          ),
+        ] as string[])
+      : null;
+    record.status = Object.keys(meta.status).length
+      ? Object.keys(meta.status)[0]
+      : null;
+  }
+  await record.save();
 }
