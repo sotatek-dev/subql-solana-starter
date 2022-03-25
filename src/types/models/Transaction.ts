@@ -26,6 +26,8 @@ export class Transaction implements Entity {
 
     public programId?: string[];
 
+    public instruction?: string[];
+
     public status?: string;
 
 
