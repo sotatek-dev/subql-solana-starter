@@ -17,11 +17,12 @@ dataSources:
     mapping:
       file: ./dist/index.js
       handlers:
-        # - handler: handleBlock
-        #   kind: solana/BlockHandler
+        - handler: handleBlock
+          kind: solana/BlockHandler
         - handler: handleTransaction
           kind: solana/TransactionHandler
   ## You can add filters below. Currently, we only support filtering by transaction's status and the programId the transaction has interacted with.
           # filter:
           #   status: Ok #Filter transactions that has "Ok" status. If you want to filter error transactions, use "Err".
-          #   programId: Vote111111111111111111111111111111111111111 #Filter transactions that have interacted with "Vote Program"
+          #   programId: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA #Filter transactions that have interacted with "Token Program"
+          #   instruction: Burn #Filter transactions that executed "Burn" instruction of "Token Program"
